@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import axios from "axios";
@@ -21,41 +21,57 @@ const HomePage: React.FC<HomePageProps> = ({
   beers,
   previousPage,
   nextPage,
-}) => (
-  <>
-    <Head>
-      <title>Browse all beers | Punk API Explorer</title>
+}) => {
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+  useEffect(() => {
+    const scrollContainer = scrollAreaRef.current;
 
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <PageContent>
-        <VStack>
-          <BeerList beers={beers} />
+    if (!scrollContainer) return;
 
-          <PaginationLayout>
-            {previousPage && (
+    scrollContainer.scrollTop = 0;
+  }, [beers]);
+
+  return (
+    <>
+      <Head>
+        <title>Browse all beers | Punk API Explorer</title>
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <motion.div
+        ref={scrollAreaRef}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <PageContent>
+          <VStack>
+            <BeerList beers={beers} />
+
+            <PaginationLayout>
+              {previousPage && (
+                <Link
+                  href={{ pathname: "/", query: { page: previousPage } }}
+                  passHref
+                >
+                  <PaginationLink>Previous</PaginationLink>
+                </Link>
+              )}
               <Link
-                href={{ pathname: "/", query: { page: previousPage } }}
+                href={{ pathname: "/", query: { page: nextPage } }}
                 passHref
               >
-                <PaginationLink>Previous</PaginationLink>
+                <PaginationLink>Next</PaginationLink>
               </Link>
-            )}
-            <Link href={{ pathname: "/", query: { page: nextPage } }} passHref>
-              <PaginationLink>Next</PaginationLink>
-            </Link>
-          </PaginationLayout>
-        </VStack>
-      </PageContent>
-    </motion.div>
-  </>
-);
+            </PaginationLayout>
+          </VStack>
+        </PageContent>
+      </motion.div>
+    </>
+  );
+};
 
 export const getServerSideProps: GetServerSideProps<HomePageProps> = async (
   context
