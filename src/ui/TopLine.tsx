@@ -18,7 +18,7 @@ from {
 
 const Line = styled.div<LineProps>`
   height: 6px;
-  background: #f84f09;
+  background: hsl(205, 74%, 27%);
   position: relative;
   overflow: hidden;
 
