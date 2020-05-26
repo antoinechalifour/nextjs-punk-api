@@ -21,7 +21,8 @@ const List = styled.ul`
   li a {
     height: 75px;
     display: grid;
-    grid-template-columns: 75px 1fr;
+    grid-template-columns: 50px 1fr;
+    grid-gap: 2rem;
     text-decoration: none;
     color: inherit;
   }
@@ -51,6 +52,7 @@ const List = styled.ul`
     max-height: 75px;
     margin-left: auto;
     margin-right: auto;
+    align-self: center;
   }
 `;
 
@@ -61,7 +63,10 @@ export const BeerList: React.FC<BeerListProps> = ({ beers }) => (
         <article>
           <Link href="/beer/[beerId]" as={`/beer/${beer.id}`}>
             <a>
-              <img src={beer.image_url} alt={beer.name} />
+              <img
+                src={beer.image_url ?? "/default_beer_image.svg"}
+                alt={beer.name}
+              />
               <span>
                 <h2>{beer.name}</h2>
                 <p>{beer.tagline}</p>

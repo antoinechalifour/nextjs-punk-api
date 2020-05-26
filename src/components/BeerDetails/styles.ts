@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 export const Layout = styled(motion.div)`
   padding: 2rem;
@@ -24,9 +24,13 @@ export const BeerTitle = styled.h2`
 `;
 
 export const SectionTitle = styled.h3`
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
   margin-top: 1rem;
+`;
+
+export const SubsectionTitle = styled.h4`
+  font-style: italic;
 `;
 
 export const DetailsList = styled.dl`

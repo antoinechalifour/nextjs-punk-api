@@ -13,11 +13,32 @@ import {
   DetailsList,
   Layout,
   SectionTitle,
+  SubsectionTitle,
 } from "@/components/BeerDetails/styles";
+import { DiscList } from "@/ui/DiscList";
+import styled from "styled-components";
 
 interface BeerDetailsPageProps {
   beer: Beer;
 }
+
+const IngredientList = styled.dl`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 1rem;
+
+  dt {
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  dt span {
+    margin-left: 1ch;
+    font-weight: normal;
+    font-size: 1.2rem;
+  }
+`;
 
 const BeerDetailsPage: React.FC<BeerDetailsPageProps> = ({ beer }) => (
   <>
@@ -34,9 +55,27 @@ const BeerDetailsPage: React.FC<BeerDetailsPageProps> = ({ beer }) => (
     >
       <PageContent>
         <VStack>
-          <BeerImage src={beer.image_url} alt={beer.name} />
+          <BeerImage
+            src={beer.image_url ?? "/default_beer_image.svg"}
+            alt={beer.name}
+          />
 
           <BeerTitle>{beer.name}</BeerTitle>
+
+          <CallOut>
+            <p>{beer.tagline}</p>
+          </CallOut>
+
+          <p>{beer.description}</p>
+
+          <p>This beer was first brewed on {beer.first_brewed}</p>
+
+          <SectionTitle>Your brewer's tips</SectionTitle>
+          <CallOut>
+            <blockquote>{beer.brewers_tips}</blockquote>
+          </CallOut>
+
+          <SectionTitle>About this beer</SectionTitle>
 
           <DetailsList>
             <dt>
@@ -50,24 +89,70 @@ const BeerDetailsPage: React.FC<BeerDetailsPageProps> = ({ beer }) => (
             <dd>{beer.ebc}</dd>
 
             <dt>
+              SRM <span>(Standard Reference Method)</span>
+            </dt>
+            <dd>{beer.srm}</dd>
+
+            <dt>
               IBU <span>(International Bittering Units)</span>
             </dt>
             <dd>{beer.ibu}</dd>
+
+            <dt>
+              OG <span>(Original Gravity)</span>
+            </dt>
+            <dd>{beer.target_og}</dd>
+
+            <dt>
+              FG <span>(Final Gravity)</span>
+            </dt>
+            <dd>{beer.target_fg}</dd>
 
             <dt>PH</dt>
             <dd>{beer.ph}</dd>
           </DetailsList>
 
-          <SectionTitle>Your brewer's tips</SectionTitle>
-          <CallOut>
-            <blockquote>{beer.brewers_tips}</blockquote>
-          </CallOut>
+          <p>This beer is best served with the following ingredients :</p>
 
-          <SectionTitle>About this beer</SectionTitle>
-          <CallOut>
-            <p>{beer.tagline}</p>
-          </CallOut>
-          <p>{beer.description}</p>
+          <DiscList>
+            {beer.food_pairing.map((food) => (
+              <li key={food}>{food}</li>
+            ))}
+          </DiscList>
+
+          <p>Contributed by {beer.contributed_by}.</p>
+
+          <SectionTitle>Ingredients</SectionTitle>
+          <SubsectionTitle>Hops</SubsectionTitle>
+
+          <IngredientList>
+            {beer.ingredients.hops.map((hop) => (
+              <>
+                <dt>
+                  {hop.name} <span>({hop.attribute})</span>
+                </dt>
+                <dd>
+                  {hop.amount.value} {hop.amount.unit}
+                </dd>
+              </>
+            ))}
+          </IngredientList>
+
+          <SubsectionTitle>Malts</SubsectionTitle>
+
+          <IngredientList>
+            {beer.ingredients.malt.map((malt) => (
+              <>
+                <dt>{malt.name}</dt>
+                <dd>
+                  {malt.amount.value} {malt.amount.unit}
+                </dd>
+              </>
+            ))}
+          </IngredientList>
+
+          <SubsectionTitle>Yeast</SubsectionTitle>
+          {beer.ingredients.yeast}
         </VStack>
       </PageContent>
     </Layout>
