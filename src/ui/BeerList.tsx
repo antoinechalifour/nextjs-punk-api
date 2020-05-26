@@ -19,6 +19,7 @@ const List = styled.ul`
   }
 
   li a {
+    height: 75px;
     display: grid;
     grid-template-columns: 75px 1fr;
     text-decoration: none;

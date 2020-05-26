@@ -17,7 +17,7 @@ interface SearchProps {
 }
 
 const Form = styled.form`
-  padding: 2rem 2rem 0;
+  padding: 0 2rem;
 
   input {
     all: unset;
