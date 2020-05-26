@@ -70,7 +70,11 @@ export const AppHeader: React.FC = () => {
     <Header>
       {leftIcon}
 
-      <h1>Punk API Explorer</h1>
+      <h1>
+        <Link href="/">
+          <a>Punk API Explorer</a>
+        </Link>
+      </h1>
 
       {rightIcon}
     </Header>
