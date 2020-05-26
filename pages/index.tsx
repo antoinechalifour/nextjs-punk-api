@@ -3,41 +3,25 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import axios from "axios";
 import Link from "next/link";
-
-import { Beer } from "../src/models/Beer";
 import { motion } from "framer-motion";
-import styled from "styled-components";
-import { PageContent } from "../src/ui/PageContent";
-import { VStack } from "../src/ui/VStack";
-import {BeerList} from "@/ui/BeerList";
 
-interface HomeProps {
+import { Beer } from "@/models/Beer";
+import { PageContent } from "@/ui/PageContent";
+import { VStack } from "@/ui/VStack";
+import { BeerList } from "@/ui/BeerList";
+import { PaginationLayout, PaginationLink } from "@/components/HomePage/styles";
+
+interface HomePageProps {
   beers: Beer[];
   previousPage: number | null;
   nextPage: number;
 }
 
-const PaginationLayout = styled.nav`
-  padding: 0 2rem;
-  display: flex;
-
-  a + a {
-    margin-left: 1rem;
-  }
-`;
-
-const PaginationLink = styled.a`
-  flex: 1;
-  display: block;
-  padding: 2rem;
-  background: #ddd;
-  width: 100%;
-  text-align: center;
-  color: inherit;
-  text-decoration: none;
-`;
-
-const Home: React.FC<HomeProps> = ({ beers, previousPage, nextPage }) => (
+const HomePage: React.FC<HomePageProps> = ({
+  beers,
+  previousPage,
+  nextPage,
+}) => (
   <>
     <Head>
       <title>Browse all beers | Punk API Explorer</title>
@@ -52,7 +36,7 @@ const Home: React.FC<HomeProps> = ({ beers, previousPage, nextPage }) => (
     >
       <PageContent>
         <VStack>
-          <BeerList beers={beers}/>
+          <BeerList beers={beers} />
 
           <PaginationLayout>
             {previousPage && (
@@ -73,7 +57,7 @@ const Home: React.FC<HomeProps> = ({ beers, previousPage, nextPage }) => (
   </>
 );
 
-export const getServerSideProps: GetServerSideProps<HomeProps> = async (
+export const getServerSideProps: GetServerSideProps<HomePageProps> = async (
   context
 ) => {
   const currentPage = context.query.page ? Number(context.query.page) : 1;
@@ -90,4 +74,4 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (
   };
 };
 
-export default Home;
+export default HomePage;
