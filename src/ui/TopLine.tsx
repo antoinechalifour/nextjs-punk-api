@@ -18,7 +18,7 @@ from {
 
 const Line = styled.div<LineProps>`
   height: 6px;
-  background: hsl(205, 74%, 27%);
+  background: linear-gradient(to left, #fdc830, #f37335);
   position: relative;
   overflow: hidden;
 

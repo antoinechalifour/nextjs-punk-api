@@ -8,6 +8,7 @@ import { VStack } from "@/ui/VStack";
 import { PageContent } from "@/ui/PageContent";
 import { Form } from "@/components/Search/styles";
 import { useSearch } from "@/components/Search/hooks";
+import { Layout } from "@/components/BeerDetails/styles";
 
 interface SearchPageProps {
   initialSearch: string;
@@ -25,9 +26,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ initialSearch }) => {
       </Head>
 
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        initial={{ transform: "translateY(100%)" }}
+        animate={{ transform: "translateY(0px)" }}
+        exit={{ transform: "translateY(100%)" }}
       >
         <PageContent>
           <VStack>

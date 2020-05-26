@@ -5,9 +5,8 @@ const CallOutLayout = styled.div`
   border-radius: 0.4rem;
   padding: 2rem;
 
-  background: hsl(205, 74%, 27%);
-  color: hsl(205, 74%, 97%);
-  text-shadow: 0 1px 3px hsl(205, 74%, 5%);
+  background: linear-gradient(to left, #fdc830, #f37335);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 
   @media (min-width: 800px) {
     margin-left: -2rem;

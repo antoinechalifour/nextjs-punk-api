@@ -49,9 +49,9 @@ const BeerDetailsPage: React.FC<BeerDetailsPageProps> = ({ beer }) => (
     </Head>
 
     <Layout
-      initial={{ transform: "translateX(100%)" }}
-      animate={{ transform: "translateX(0px)" }}
-      exit={{ transform: "translateX(100%)" }}
+      initial={{ transform: "translateY(100%)" }}
+      animate={{ transform: "translateY(0px)" }}
+      exit={{ transform: "translateY(100%)" }}
     >
       <PageContent>
         <VStack>
@@ -69,11 +69,6 @@ const BeerDetailsPage: React.FC<BeerDetailsPageProps> = ({ beer }) => (
           <p>{beer.description}</p>
 
           <p>This beer was first brewed on {beer.first_brewed}</p>
-
-          <SectionTitle>Your brewer's tips</SectionTitle>
-          <CallOut>
-            <blockquote>{beer.brewers_tips}</blockquote>
-          </CallOut>
 
           <SectionTitle>About this beer</SectionTitle>
 
@@ -120,7 +115,10 @@ const BeerDetailsPage: React.FC<BeerDetailsPageProps> = ({ beer }) => (
             ))}
           </DiscList>
 
-          <p>Contributed by {beer.contributed_by}.</p>
+          <SectionTitle>Your brewer's tips</SectionTitle>
+          <CallOut>
+            <blockquote>{beer.brewers_tips}</blockquote>
+          </CallOut>
 
           <SectionTitle>Ingredients</SectionTitle>
           <SubsectionTitle>Hops</SubsectionTitle>
@@ -152,7 +150,10 @@ const BeerDetailsPage: React.FC<BeerDetailsPageProps> = ({ beer }) => (
           </IngredientList>
 
           <SubsectionTitle>Yeast</SubsectionTitle>
-          {beer.ingredients.yeast}
+          <p>{beer.ingredients.yeast}</p>
+
+          <SectionTitle>Contributions</SectionTitle>
+          <p>Contributed by {beer.contributed_by}.</p>
         </VStack>
       </PageContent>
     </Layout>

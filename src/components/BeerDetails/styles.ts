@@ -26,7 +26,8 @@ export const BeerTitle = styled.h2`
 export const SectionTitle = styled.h3`
   font-size: 2rem;
   font-weight: bold;
-  margin-top: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid #ddd;
 `;
 
 export const SubsectionTitle = styled.h4`
