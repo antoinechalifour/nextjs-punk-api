@@ -18,5 +18,6 @@ export const AppLayout = styled.div`
     right: 0;
     bottom: 0;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 `;
