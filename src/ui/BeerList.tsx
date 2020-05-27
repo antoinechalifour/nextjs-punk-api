@@ -9,17 +9,14 @@ interface BeerListProps {
 }
 
 const List = styled.ul`
-  li {
-    padding: 1rem;
-    line-height: 1.5;
-  }
-
   li + li {
     border-top: 1px solid #ddd;
   }
 
   li a {
-    height: 75px;
+    line-height: 1.5;
+    padding: 1rem;
+    height: 96px;
     display: grid;
     grid-template-columns: 50px 1fr;
     grid-gap: 2rem;
