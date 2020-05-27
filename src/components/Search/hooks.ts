@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 import { Beer } from "@/models/Beer";
 import axios from "axios";
@@ -10,12 +10,12 @@ const fetcher = (_: unknown, query: string) =>
     .then((response) => response.data);
 
 export const useSearch = (initialSearch: string) => {
+  const ref = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
   const [query, setQuery] = useState(initialSearch);
-  const { data } = useSWR(
-    query ? ["/search", query] : null,
-    fetcher
-  );
+  const { data } = useSWR(query ? ["/search", query] : null, fetcher);
+
+  const beers: Beer[] | undefined = data;
 
   useEffect(() => {
     if (query === initialSearch) return;
@@ -26,7 +26,19 @@ export const useSearch = (initialSearch: string) => {
     });
   }, [query, initialSearch]);
 
-  const beers: Beer[] | undefined = data;
+  useEffect(() => {
+    const input = ref.current;
 
-  return { beers, query, setQuery };
+    if (!input) return;
+
+    const handleTouchMove = () => input.blur();
+
+    window.addEventListener("touchmove", handleTouchMove);
+
+    return () => {
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
+
+  return { beers, query, setQuery, inputRef: ref };
 };

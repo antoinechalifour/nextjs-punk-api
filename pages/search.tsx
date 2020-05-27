@@ -14,7 +14,7 @@ interface SearchPageProps {
 }
 
 const SearchPage: React.FC<SearchPageProps> = ({ initialSearch }) => {
-  const { beers, query, setQuery } = useSearch(initialSearch);
+  const { beers, query, setQuery, inputRef } = useSearch(initialSearch);
 
   return (
     <>
@@ -33,6 +33,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ initialSearch }) => {
           <VStack>
             <Form onSubmit={(e) => e.preventDefault()}>
               <input
+                ref={inputRef}
                 type="text"
                 placeholder="Search your favorite beer"
                 autoComplete="off"
