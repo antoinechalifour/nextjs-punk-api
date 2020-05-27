@@ -8,7 +8,6 @@ import { VStack } from "@/ui/VStack";
 import { PageContent } from "@/ui/PageContent";
 import { Form } from "@/components/Search/styles";
 import { useSearch } from "@/components/Search/hooks";
-import { Layout } from "@/components/BeerDetails/styles";
 
 interface SearchPageProps {
   initialSearch: string;

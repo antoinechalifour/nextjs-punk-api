@@ -13,7 +13,7 @@ export const useSearch = (initialSearch: string) => {
   const router = useRouter();
   const [query, setQuery] = useState(initialSearch);
   const { data } = useSWR(
-    query.length > 2 ? ["/search", query] : null,
+    query ? ["/search", query] : null,
     fetcher
   );
 
