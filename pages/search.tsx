@@ -36,6 +36,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ initialSearch }) => {
               <input
                 type="text"
                 placeholder="Search your favorite beer"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
