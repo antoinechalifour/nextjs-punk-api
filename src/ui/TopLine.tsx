@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled, {css, keyframes} from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import Router from "next/router";
 
 interface LineProps {

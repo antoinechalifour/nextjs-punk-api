@@ -1,17 +1,17 @@
 import React from "react";
-import {GetServerSideProps} from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import axios from "axios";
 import Link from "next/link";
-import {motion} from "framer-motion";
-import {useRouter} from "next/router";
+import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
-import {Beer} from "@/models/Beer";
-import {PageContent} from "@/ui/PageContent";
-import {VStack} from "@/ui/VStack";
-import {BeerList} from "@/ui/BeerList";
-import {PaginationLayout, PaginationLink} from "@/components/HomePage/styles";
-import {useScrollRestoration} from "@/hooks/useScrollRestoration";
+import { Beer } from "@/models/Beer";
+import { PageContent } from "@/ui/PageContent";
+import { VStack } from "@/ui/VStack";
+import { BeerList } from "@/ui/BeerList";
+import { PaginationLayout, PaginationLink } from "@/components/HomePage/styles";
+import { useScrollRestoration } from "@/hooks/useScrollRestoration";
 
 interface HomePageProps {
   beers: Beer[];

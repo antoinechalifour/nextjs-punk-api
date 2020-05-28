@@ -24,7 +24,7 @@ export const useSearch = (initialSearch: string) => {
       pathname: "/search",
       query: { query },
     });
-  }, [query, initialSearch]);
+  }, [router, query, initialSearch]);
 
   useEffect(() => {
     const input = ref.current;
