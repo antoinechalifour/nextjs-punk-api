@@ -17,6 +17,7 @@ export const Header = styled.header`
     font-family: inherit;
     color: inherit;
     padding: 0;
+    cursor: pointer;
   }
 
   svg {
