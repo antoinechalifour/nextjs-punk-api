@@ -2,11 +2,13 @@ import React from "react";
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import styled from "styled-components";
 
-import { VStack } from "@/ui/VStack";
 import { Beer } from "@/models/Beer";
+import { VStack } from "@/ui/VStack";
 import { PageContent } from "@/ui/PageContent";
 import { CallOut } from "@/ui/CallOut";
+import { DiscList } from "@/ui/DiscList";
 import {
   BeerImage,
   BeerTitle,
@@ -15,8 +17,6 @@ import {
   SectionTitle,
   SubsectionTitle,
 } from "@/components/BeerDetails/styles";
-import { DiscList } from "@/ui/DiscList";
-import styled from "styled-components";
 
 interface BeerDetailsPageProps {
   beer: Beer;

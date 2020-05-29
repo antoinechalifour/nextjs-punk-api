@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { Beer } from "@/models/Beer";
 import { PageContent } from "@/ui/PageContent";
 import { VStack } from "@/ui/VStack";
-import { BeerList } from "@/ui/BeerList";
+import { BeerList } from "@/components/BeerList/BeerList";
 import { PaginationLayout, PaginationLink } from "@/components/HomePage/styles";
 import { useScrollRestoration } from "@/hooks/useScrollRestoration";
 

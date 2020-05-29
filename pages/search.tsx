@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 
-import { BeerList } from "@/ui/BeerList";
 import { VStack } from "@/ui/VStack";
 import { PageContent } from "@/ui/PageContent";
 import { Form } from "@/components/Search/styles";
+import { BeerList } from "@/components/BeerList/BeerList";
 import { useSearch } from "@/components/Search/hooks";
 
 interface SearchPageProps {
