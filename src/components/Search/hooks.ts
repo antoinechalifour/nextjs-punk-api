@@ -13,7 +13,7 @@ export const useSearch = (initialSearch: string) => {
   const ref = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
   const [query, setQuery] = useState(initialSearch);
-  const { data } = useSWR(query ? ["/search", query] : null, fetcher);
+  const { data, error } = useSWR(query ? ["/search", query] : null, fetcher);
 
   const beers: Beer[] | undefined = data;
 
@@ -40,5 +40,11 @@ export const useSearch = (initialSearch: string) => {
     };
   }, []);
 
-  return { beers, query, setQuery, inputRef: ref };
+  return {
+    beers,
+    error,
+    query,
+    setQuery,
+    inputRef: ref,
+  };
 };

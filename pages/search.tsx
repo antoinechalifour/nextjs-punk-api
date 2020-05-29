@@ -5,7 +5,7 @@ import Head from "next/head";
 
 import { VStack } from "@/ui/VStack";
 import { PageContent } from "@/ui/PageContent";
-import { Form } from "@/components/Search/styles";
+import { ErrorMessage, Form, ResultsTitle } from "@/components/Search/styles";
 import { BeerList } from "@/components/BeerList/BeerList";
 import { useSearch } from "@/components/Search/hooks";
 
@@ -14,7 +14,7 @@ interface SearchPageProps {
 }
 
 const SearchPage: React.FC<SearchPageProps> = ({ initialSearch }) => {
-  const { beers, query, setQuery, inputRef } = useSearch(initialSearch);
+  const { beers, error, query, setQuery, inputRef } = useSearch(initialSearch);
 
   return (
     <>
@@ -44,7 +44,15 @@ const SearchPage: React.FC<SearchPageProps> = ({ initialSearch }) => {
               />
             </Form>
 
-            {beers && <BeerList beers={beers} />}
+            {error && (
+              <ErrorMessage>An error occurred, please try again</ErrorMessage>
+            )}
+            {beers && (
+              <>
+                <ResultsTitle>Results for "{query}"</ResultsTitle>
+                <BeerList beers={beers} />
+              </>
+            )}
           </VStack>
         </PageContent>
       </motion.div>

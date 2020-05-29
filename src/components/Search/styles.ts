@@ -13,3 +13,14 @@ export const Form = styled.form`
     background: #ddd;
   }
 `;
+
+export const ResultsTitle = styled.h2`
+  font-weight: bold;
+  font-size: 2rem;
+`;
+
+export const ErrorMessage = styled.p`
+  text-align: center;
+  font-style: italic;
+  color: #888;
+`;
